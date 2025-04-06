@@ -131,12 +131,11 @@ bool Students::Del(string name)
 void Students::Del(Student* key)
 {
 	Student* curr = key;
-	Student* parent = NULL;
-	Student* currnext = NULL;
 
 
 	if (curr != NULL) {
-		
+		Student* parent = key->prev;
+		Student* currnext = key->next;
 		if (curr->prev == NULL && curr->next == NULL) {
 			firstStudent = NULL;
 			delete curr;
@@ -151,7 +150,6 @@ void Students::Del(Student* key)
 			delete curr;
 		}
 		else {
-			currnext = curr->next;
 			parent->next = currnext;
 			currnext->prev = parent;
 			delete curr;

@@ -169,7 +169,7 @@ void SetGrades() {
         string grad;
         bool ok = false;
         Student* OutputStudent = _Students.GetFirst();
-        for (int i = 0; i <= _Students.GetCount() - 1; i++) {
+        for (int i = 0; i <= _Students.GetCount() - 1 && ok == false; i++) {
             grad = "";
             string name; string group; vector<int> grades; double mdgrade;
             _Students.Get(OutputStudent, name, group, grades, mdgrade);
@@ -216,7 +216,7 @@ void SetGrades() {
         string grad;
         bool ok = false;
         Student* OutputStudent = _Students2.GetFirst();
-        for (int i = 0; i <= _Students2.GetCount() - 1; i++) {
+        for (int i = 0; i <= _Students2.GetCount() - 1 && ok == false; i++) {
             grad = "";
             string name; string group; vector<int> grades; double mdgrade;
             _Students2.Get(OutputStudent, name, group, grades, mdgrade);
@@ -246,8 +246,6 @@ void SetGrades() {
                         }
                         mdgrade = medium / grades.size();
                         _Students.Set(OutputStudent, name, group, grades, mdgrade);
-                        _Students.Add(name, group, grades);
-                        _Students2.Del(OutputStudent);
                     }
                     else
                     {
@@ -331,6 +329,7 @@ void Output() {
             }
             cout << "ФИО: " << name << endl << "Группа: " << group << endl << "Средний балл: " << mdgrade << endl << "Оценки: " << grad << endl << endl;
             OutputStudent = _Students.GoPrev(OutputStudent);
+            
         }
     } 
     else if (chooselist == "2" && chooseorder == "2") {
@@ -402,6 +401,7 @@ int main()
         case 7:
             clr;
             WriteToFile();
+            cout << "Результаты записаны в файл." << endl;
             pause;
             break;
         case 8:
